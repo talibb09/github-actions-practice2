@@ -4,6 +4,7 @@ name: CD
 
 
 on:
+  # it will call the workflow CD
     workflow_call:
 jobs: 
     deploy:
