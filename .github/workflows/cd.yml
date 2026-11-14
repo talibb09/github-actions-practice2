@@ -4,11 +4,11 @@ name: CD
 
 
 on:
-  
+
     workflow_call:
 jobs: 
     deploy:
-        runs-on: self-hosted-runner
+        runs-on: self-hosted
         steps:
             - name: Checkout Code
               uses: actions/checkout@v7
