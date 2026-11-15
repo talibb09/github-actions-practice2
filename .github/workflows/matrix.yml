@@ -1,0 +1,33 @@
+# Goal is to install multiple versions of go and install multiple versions
+
+name: Go Linter
+
+on:
+    workflow_dispatch:
+
+jobs:
+    code-formate:
+        runs-on: ubuntu-latest
+        strategy:
+            fail-fast: false
+            matrix:
+                go-version: ['1.22', '1.23', '1.24']
+        steps:
+            - name: Setup Go
+              uses: actions/setup-go@v7
+              with:
+                go-version: ${{matrix.go-version}}
+                go-version-file: 'go.mod'
+                cache-dependency-path: 'go.sum'
+            
+            - name: Run go Formatter
+              working-directory: ./backend
+              run: go fmt
+
+            - name: Run Go Vet
+              working-directory: ./backend
+              run: go vet
+
+
+
+              
