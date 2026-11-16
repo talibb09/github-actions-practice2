@@ -81,9 +81,9 @@ jobs:
           - name: Docker build and push
             uses: docker/build-push-action@v7
             with:
-              context: ./${{matrix.folder}}    # folder that holds the backend code
+              context: ./${{matrix.folder}} 
               push: true
-              tags: ${{ vars.DOCKERHUB_USERNAME }}/my-devboard-${{matrix.folder}} :latest  
+              tags: ${{ vars.DOCKERHUB_USERNAME }}/my-devboard-${{matrix.folder}}:latest  
 
     deploy:
         needs: [lint-frontend,lint-backend,build-and-push]
