@@ -4,9 +4,7 @@ name: Go Linter
 
 on:
 
-  schedule:
-    - cron: '25 7 * * *'
-
+  push:
 jobs:
     code-formate:
         runs-on: ubuntu-latest
