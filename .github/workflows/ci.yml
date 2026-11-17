@@ -5,11 +5,7 @@ name: CI
 
 on:
     push:
-
-      paths:
-       - 'frontend'
-       - 'backend'
-      #  - '!.github/workflows/**'
+      
       branches: [feat/matrix-docker-build]
 
 jobs:
