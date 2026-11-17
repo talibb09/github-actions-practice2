@@ -3,7 +3,8 @@
 name: Go Linter
 
 on:
-    workflow_dispatch:
+    schedule:
+        - cron: '51 02 * * *'
 
 jobs:
     code-formate:
