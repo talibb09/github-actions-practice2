@@ -1,0 +1,13 @@
+# Goal - to run end to end devsecops CI pipeline
+
+name: DevSecOps
+
+on:
+    push:
+        branches: [feat/matrix-docker-build]
+
+jobs:
+    
+    code-quality:
+    # Code Stage (with shift left)    
+        uses: ./.github/workflows/code-quality.yml
