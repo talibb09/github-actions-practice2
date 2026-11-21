@@ -1,20 +1,28 @@
-# Single-stage: build and run the Go binary from the same golang image.
-# (No multi-stage yet — slimming the final image comes later in the course.)
-FROM golang:1.22-alpine
+
+# Stage 1: Build the Go application
+FROM golang:1.26-alpine AS builder
 
 WORKDIR /app
 
-# Download deps first for better layer caching.
 COPY go.mod go.sum ./
 RUN go mod download
 
-# Build the binary.
 COPY . .
+
 RUN CGO_ENABLED=0 go build -o devboard-backend .
 
-# Run as a non-root user.
-RUN adduser -D -u 10001 app && chown -R app:app /app
+# Stage 2: Minimal runtime image
+FROM alpine:3.22
+
+WORKDIR /app
+
+RUN adduser -D -u 10001 app
+
+COPY --from=builder --chown=app:app /app/devboard-backend .
+
 USER app
 
 EXPOSE 8080
+
 ENTRYPOINT ["./devboard-backend"]
+
