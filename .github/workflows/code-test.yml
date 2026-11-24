@@ -13,7 +13,7 @@ jobs:
             - name: Setup Go
               uses: actions/setup-go@v7
               with:
-                go-version: ${{matrix.go-version}}
+                go-version: latest
                 go-version-file: 'go.mod'
                 cache-dependency-path: 'go.sum'
                 
