@@ -23,4 +23,9 @@ jobs:
     # Docker Checks
     docker-lint-and-scan:
         uses: ./.github/workflows/docker-scans.yml
-        secrets: inherit   
+        secrets: inherit
+
+    # SonarQube
+    sonar-qube:
+        uses: ./.github/workflows/sonar-scan.yml
+        secrets: inherit
