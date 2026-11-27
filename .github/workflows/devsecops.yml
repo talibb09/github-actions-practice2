@@ -7,9 +7,9 @@ on:
         branches: [feat/matrix-docker-build]
 
 jobs:
-    
+    # ---CI----
     code-quality:
-    # Code Stage (with shift left)    
+    # Code Stage    
         uses: ./.github/workflows/code-quality.yml
 
     # Secret Scanning
@@ -39,3 +39,9 @@ jobs:
         uses: ./.github/workflows/docker-push.yml
         needs: [code-quality,secret-scanning,dependency-check, docker-lint-and-scan,sonar-qube,code-test ]
         secrets: inherit 
+
+    # ---CD----    
+    Deploy:
+        needs: [docker-push]
+        uses: ./.github/workflows/deploy.yml
+        secrets: inherit
